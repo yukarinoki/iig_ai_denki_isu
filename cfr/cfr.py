@@ -52,7 +52,7 @@ def get_initial_strategy_profile(node: Node, num_players=None, strategy_profile=
     if node.terminal:
         return strategy_profile
     if strategy_profile is None:
-        strategy_profile = {player: {} for player in range(-1, num_players)}  # chance nodeのために+1する
+        strategy_profile = {player: {} for player in range(0, num_players)}  
     if node.information not in strategy_profile[node.player]:
         strategy_profile[node.player][node.information] = {action: 1 / len(node.children) for action in node.children}
     for child in node.children.values():
@@ -149,11 +149,11 @@ def train(num_iter, log_schedule):
     for t in tqdm(range(num_iter)):
         update_pi(game.root, strategy_profile, average_strategy_profile, [1.0 for _ in range(game.num_players + 1)], [1.0 for _ in range(game.num_players + 1)], [1.0 for _ in range(game.num_players + 1)])
         update_node_values(game.root, strategy_profile)
-        exploitability = get_exploitability(game, average_strategy_profile)
+        #exploitability = get_exploitability(game, average_strategy_profile)
         update_strategy(strategy_profile, average_strategy_profile, game.information_sets)
         if t % log_schedule(t) == 0:
             logger.logkv("t", t)
-            logger.logkv("exploitability", exploitability)
+            #logger.logkv("exploitability", exploitability)
             logger.dumpkvs()
     return average_strategy_profile
 
