@@ -1,0 +1,74 @@
+'Player: 0, Remaining Chairs: [1, 2, 3, 4], Players Life: [1, 1], Players Score: [0, 0], Configure Turn: True':
+  1: 0.1613361117813106
+  2: 0.1613361117813106
+  3: 0.16755745996690521
+  4: 0.5097703164704702
+'Player: 0, Remaining Chairs: [1, 2, 4], Players Life: [1, 1], Players Score: [0, 3], Configure Turn: False':
+  1: 0.4001267941311916
+  2: 0.3962648972024837
+  4: 0.20360830866632512
+'Player: 0, Remaining Chairs: [1, 3, 4], Players Life: [1, 1], Players Score: [0, 2], Configure Turn: False':
+  1: 0.3997804153003022
+  3: 0.39991529991394664
+  4: 0.20030428478575546
+'Player: 0, Remaining Chairs: [1, 4], Players Life: [1, 1], Players Score: [2, 3], Configure Turn: True':
+  1: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [1, 4], Players Life: [1, 1], Players Score: [3, 2], Configure Turn: True':
+  1: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [2, 3, 4], Players Life: [1, 1], Players Score: [0, 1], Configure Turn: False':
+  2: 0.3997804153003022
+  3: 0.39991529991394664
+  4: 0.20030428478575546
+'Player: 0, Remaining Chairs: [2, 4], Players Life: [1, 1], Players Score: [1, 3], Configure Turn: True':
+  2: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [2, 4], Players Life: [1, 1], Players Score: [3, 1], Configure Turn: True':
+  2: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [3, 4], Players Life: [1, 1], Players Score: [1, 2], Configure Turn: True':
+  3: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [3, 4], Players Life: [1, 1], Players Score: [2, 1], Configure Turn: True':
+  3: 0.5
+  4: 0.5
+'Player: 0, Remaining Chairs: [4], Players Life: [1, 1], Players Score: [3, 3], Configure Turn: False':
+  4: 1.0
+'Player: 1, Remaining Chairs: [1, 2, 3, 4], Players Life: [1, 1], Players Score: [0, 0], Configure Turn: False':
+  1: 0.2800955426642307
+  2: 0.2800955426642307
+  3: 0.273730476838
+  4: 0.16607843783354168
+'Player: 1, Remaining Chairs: [1, 2, 4], Players Life: [1, 1], Players Score: [0, 3], Configure Turn: True':
+  1: 0.19248380874173468
+  2: 0.1930748713778814
+  4: 0.6144413198803831
+'Player: 1, Remaining Chairs: [1, 3, 4], Players Life: [1, 1], Players Score: [0, 2], Configure Turn: True':
+  1: 0.20199235416423836
+  3: 0.20209614132121345
+  4: 0.5959115045145439
+'Player: 1, Remaining Chairs: [1, 4], Players Life: [1, 1], Players Score: [2, 3], Configure Turn: False':
+  1: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [1, 4], Players Life: [1, 1], Players Score: [3, 2], Configure Turn: False':
+  1: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [2, 3, 4], Players Life: [1, 1], Players Score: [0, 1], Configure Turn: True':
+  2: 0.20199235416423836
+  3: 0.20209614132121345
+  4: 0.5959115045145439
+'Player: 1, Remaining Chairs: [2, 4], Players Life: [1, 1], Players Score: [1, 3], Configure Turn: False':
+  2: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [2, 4], Players Life: [1, 1], Players Score: [3, 1], Configure Turn: False':
+  2: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [3, 4], Players Life: [1, 1], Players Score: [1, 2], Configure Turn: False':
+  3: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [3, 4], Players Life: [1, 1], Players Score: [2, 1], Configure Turn: False':
+  3: 0.5
+  4: 0.5
+'Player: 1, Remaining Chairs: [4], Players Life: [1, 1], Players Score: [3, 3], Configure Turn: True':
+  4: 1.0

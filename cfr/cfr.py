@@ -5,7 +5,8 @@ from tqdm import tqdm
 import yaml
 
 import logger
-from envs.toy_pokers import Node, KuhnPoker
+# from envs.toy_pokers import Node, KuhnPoker
+from envs.denkiisu_game import Node, DenkiisuGame
 
 
 def update_pi(node: Node, strategy_profile: dict, average_strategy_profile: dict, pi_mi_list: list, pi_i_list: list, true_pi_mi_list: list):
@@ -133,7 +134,7 @@ def check_exploitability():
     """
     KuhnPoker
     """
-    game = KuhnPoker()
+    game = DenkiisuGame()
     nash_equilibrium = game.get_nash_equilibrium(game.root)
     update_pi(game.root, nash_equilibrium, nash_equilibrium, [1.0 for _ in range(game.num_players + 1)],
               [1.0 for _ in range(game.num_players + 1)], [1.0 for _ in range(game.num_players + 1)])
@@ -142,7 +143,7 @@ def check_exploitability():
 
 
 def train(num_iter, log_schedule):
-    game = KuhnPoker()
+    game = DenkiisuGame()
     strategy_profile = get_initial_strategy_profile(game.root, game.num_players)
     average_strategy_profile = deepcopy(strategy_profile)
     for t in tqdm(range(num_iter)):
@@ -156,11 +157,13 @@ def train(num_iter, log_schedule):
             logger.dumpkvs()
     return average_strategy_profile
 
-
 def add_dict_to_dict(d: dict, key):
     if key not in d:
         d[key] = {}
 
+def state_to_string(state):
+    # Stateオブジェクトをユニークな文字列に変換する関数
+    return f"Player: {state.player}, Remaining Chairs: {sorted(state.remaining_chairs)}, Players Life: {state.players_life}, Players Score: {state.players_score}, Configure Turn: {state.configure_turn}"
 
 def export_strategy_profile_to_yaml(strategy_profile_result):
     result = {}
@@ -168,21 +171,20 @@ def export_strategy_profile_to_yaml(strategy_profile_result):
         if player == -1:
             continue
         for info, p_dist in sigma.items():
-            add_dict_to_dict(result, info[0][0])
-            if len(info[1]) == 0:
-                history = "-"
-            else:
-                history = "-".join(info[1])
+            print(f"info: {info}")  # デバッグ用
+            state_obj = info  # 正しいアクセス方法を確認
+            state_str = state_to_string(state_obj)  # Stateオブジェクトを文字列に変換
+            add_dict_to_dict(result, state_str)
             for action, p in p_dist.items():
-                add_dict_to_dict(result[info[0][0]], history)
-                result[info[0][0]][history][action] = p
-    with open("../sample_result.yaml", "w") as f:
+                result[state_str][action] = p
+    print(result)
+    with open("sample_result.yaml", "w") as f:
         yaml.dump(result, f)
 
 
 def main():
     logger.configure("./logs")
-    num_updates = int(5e7)
+    num_updates = int(1e4)
     average_strategy_profile = train(num_updates, lambda x: (10 ** (len(str(x)) - 1)))
     export_strategy_profile_to_yaml(average_strategy_profile)
 

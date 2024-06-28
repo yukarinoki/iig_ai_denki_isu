@@ -1,13 +1,60 @@
-# AI for Imperfect Information Game  
-このリポジトリは不完全情報ゲームのナッシュ均衡戦略を計算的に求めるアルゴリズム、Counterfactual Regret Minimization(CFR)をPython3で実装したものです。
-CFRについて解説したブログは[こちら](https://tech.morikatron.ai/entry/2020/08/31/100000 "こちら")になります  
+# 電気イスゲームAI for Imperfect Information Game  
 
-## Relevant Papers
-- An Introduction to Counterfactual Regret Minimization, T. Neller, M. Lanctot 2013
-http://modelai.gettysburg.edu/2013/cfr/  
+このリポジトリは電気椅子ゲームのナッシュ均衡戦略を計算的に求めるアルゴリズム、Counterfactual Regret Minimization(CFR)をPython3で実装したものです。
+コードの大部分はフォーク元のhttps://github.com/morikatron/iig_aiと変更していない。
 
-- Regret Minimization in Games with Incomplete Information, M. Zinkevich, M. Bowling, M. Johanson, C. Piccione. NIPS 2007.  
-http://martin.zinkevich.org/publications/regretpoker.pdf  
+差分としては
+- 電気イスゲームの環境(= ゲーム自体の記述)
+- その変更に伴う`cfr/cfr.py`の微修正
+
+# 電気イスゲームとは
+TBS系バラエティ番組「水曜日のダウンタウン」の2024/6/12, 2024/6/19にて二回連続で取り上げられた不完全情報・有限・不確定ゲームである。
+おそらく、上記放送にて世界初出のゲームである（未調査）。
+
+## 電気イスゲームの基本ルール
+ゲームのルールは以下である、
+- 「1」から「12」までナンバリングされた12脚のイスのどこに相手が座るかを予想し、そのうちの1脚に、交互に電流を仕掛けあうというゲーム
+- 回避できれば座ったイスの数字がポイントとなり、電流を食らった場合は、それまで積み上げたポイントがすべて没収される
+  - 回避して座った場合には、そのイスは取り除かれる
+- 8回戦のゲームである（各人で8回、合計では16回の仕掛け + 着座）
+- 勝利条件
+   - (最終的にポイントが高いほうが勝ち)
+     - イスは12脚、電撃は最大4回なので、上記ルールが無くとも、8回戦目後半が終わる前に必ずポイントもしくは電撃で決着がつく
+   - 先に40ポイントを獲得する
+   - 相手に3回、電気イスに座らせる
+
+## 一般化された電気イスゲーム
+
+電気イスゲームは、(イス数, ライフ, 勝利ポイント）について 一般化することができる。
+それを、`ECG(c, l, w)`と書くことにする。この記法の下で、前述の電気イスゲームは、`ECG(12, 3, 40)`と書くことができる。
+一般化された電気イスゲーム`ECG(c, l, w)`の勝利条件を以下とする
+- 勝利条件
+   - 先に`w`ポイントを獲得する
+   - 相手に`l`回、電気イスに座らせる
+
+
+## 結果
+現状の実装では、ECG(4,1,4)が計算の時間的な限界である。
+
+
+### 最適なaction
+以下を見るだけでもちょっと面白い。
+```yaml
+'Player: 0, Remaining Chairs: [1, 2, 3, 4], Players Life: [1, 1], Players Score: [0, 0], Configure Turn: True':
+  1: 0.1613361117813106
+  2: 0.1613361117813106
+  3: 0.16755745996690521
+  4: 0.5097703164704702
+'Player: 1, Remaining Chairs: [1, 2, 3, 4], Players Life: [1, 1], Players Score: [0, 0], Configure Turn: False':
+  1: 0.2800955426642307
+  2: 0.2800955426642307
+  3: 0.273730476838
+  4: 0.16607843783354168
+```
+
+座る側が一発で勝利できるイスがあった場合、仕掛ける側は1/2でそのイス（今回は`4`）に仕掛けるべきだが、座る側はそれでも1/5の確率ではその椅子に座るべきらしい。
+全体は`4_1_4.yaml`で確認できる。
+
 
 ## Requirements
  - Python3
@@ -17,7 +64,7 @@ http://martin.zinkevich.org/publications/regretpoker.pdf
 ## Usage
   - clone this repo
  ```
- $ git clone https://github.com/morikatron/iig_ai.git
+ $ git clone https://github.com/yukarinoki/iig_ai_denki_isu
  ```
   - change directory and run 
  ```
@@ -25,5 +72,3 @@ http://martin.zinkevich.org/publications/regretpoker.pdf
  $ python cfr/cfr.py
  ```
  
-## Performance Example
- ![vanilla cfr performance](https://github.com/morikatron/iig_ai/blob/master/assets/vanilla_cfr_performance.png)
