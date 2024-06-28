@@ -1,7 +1,7 @@
 # 電気イスゲームAI for Imperfect Information Game  
 
 このリポジトリは電気椅子ゲームのナッシュ均衡戦略を計算的に求めるアルゴリズム、Counterfactual Regret Minimization(CFR)をPython3で実装したものです。
-コードの大部分はフォーク元のhttps://github.com/morikatron/iig_aiと変更していない。
+コードの大部分はフォーク元のhttps://github.com/morikatron/iig_ai から変更していない。
 
 差分としては
 - 電気イスゲームの環境(= ゲーム自体の記述)
